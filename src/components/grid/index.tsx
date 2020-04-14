@@ -1,13 +1,19 @@
-import React, { Children, FC } from 'react'
+import React, { Children, FC, useCallback, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { AnyAction, Dispatch } from 'redux'
 
-import { createFullGrid } from 'utils'
+import { INDEX } from 'typings'
+import { createGrid } from 'reducers'
 
 import Block from './block'
 import { Container, Row } from './styles'
 
 const Grid: FC = () => {
-  const grid = createFullGrid()
-  console.log('grid', grid)
+  const dispatch = useDispatch<Dispatch<AnyAction>>() // hook that returns the dispatch function
+  const create = useCallback(() => dispatch(createGrid()), [dispatch]) // memoized function - only re-call if dispatch changes which it won't
+  useEffect(() => {
+    create()
+  }, [create]) // only run once, unless create changes, which it never should
   return (
     <Container data-cy="grid-container">
       {Children.toArray(
@@ -15,7 +21,10 @@ const Grid: FC = () => {
           <Row data-cy="grid-row-container">
             {Children.toArray(
               [...Array(9)].map((_, colIndex) => (
-                <Block rowIndex={rowIndex} colIndex={colIndex} />
+                <Block
+                  rowIndex={rowIndex as INDEX}
+                  colIndex={colIndex as INDEX}
+                />
               ))
             )}
           </Row>
