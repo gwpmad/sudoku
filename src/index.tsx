@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 
-import { Card, Content, Grid, Title } from 'components'
-import { configureStore, unregister } from 'core'
+import { Card, Content, Grid, NewButton, Numbers, Title } from 'components'
+import { configureStore, register } from 'core'
 import { GlobalStyles, theme } from 'styles'
 
 const store = configureStore()
@@ -18,7 +18,9 @@ ReactDOM.render(
           Sudoku
         </Title>
         <Card data-cy="card__data-attribute-for-easier-finding-and-testing">
+          <NewButton />
           <Grid />
+          <Numbers />
         </Card>
       </Content>
     </Provider>
@@ -29,4 +31,6 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-unregister()
+
+// note - in the course we opted into the service worker by changing unregister() to register()
+register()

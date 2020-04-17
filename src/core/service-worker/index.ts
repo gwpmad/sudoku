@@ -1,3 +1,5 @@
+// GM: Service worker works on a different thread from the DOM
+
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
@@ -26,6 +28,10 @@ type Config = {
 }
 
 export function register(config?: Config) {
+  // GM: process.env is injected on to the front end using Webpack's DefinePlugin
+  // See react-scripts code here: https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/config/env.js#L67-L68
+  // and https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/config/webpack.config.js#L621
+
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href)
