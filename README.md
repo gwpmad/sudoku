@@ -1,4 +1,4 @@
-#Sudoku
+# Sudoku
 I created this project as part of an excellent [Udemy course](https://www.udemy.com/course/react2020/) by Barry Michael Doyle.
 
 ----
