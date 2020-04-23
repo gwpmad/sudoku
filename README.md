@@ -1,3 +1,8 @@
+#Sudoku
+I created this project as part of an excellent [Udemy course](https://www.udemy.com/course/react2020/) by Barry Michael Doyle.
+
+----
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
